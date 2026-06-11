@@ -13,4 +13,17 @@ const sequelize = new Sequelize(
   dbConfig
 );
 
-module.exports = { sequelize, Sequelize, DataTypes };
+//CARGAMOS LOS MODELOS
+const User = require('./User')(sequelize);
+const Product = require('./Product')(sequelize);
+const Category = require('./Categories')(sequelize);
+
+// Definir relaciones entre modelos
+Category.hasMany(Product, { foreignKey: 'category_id' });
+Product.belongsTo(Category, { foreignKey: 'category_id' });
+
+Category.hasMany(Category, { foreignKey: 'parent_id', as: 'Subcategories' });
+Category.belongsTo(Category, { foreignKey: 'parent_id', as: 'ParentCategory' });
+
+
+module.exports = { sequelize, Sequelize, User, Product, Category };

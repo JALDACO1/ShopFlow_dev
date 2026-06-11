@@ -8,6 +8,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Rutas de autenticación.
+app.use('/api/auth', require('./modules/auth/auth.routes'));
+
 // Endpoint simple para comprobar que el servicio está vivo.
 app.get("/health", (req, res) => {
     res.json({status: "ok"});
