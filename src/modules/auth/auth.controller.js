@@ -19,4 +19,13 @@ const login = async (req, res, next) => {
     }
 }
 
-module.exports = { register, login };
+const refresh = async (req, res, next) => {
+    try{
+        const data = await service.refresh(req.body.refreshToken);
+        res.status(200).json(data);
+    } catch (error) {
+        next(error);
+    }
+}
+
+module.exports = { register, login, refresh };
