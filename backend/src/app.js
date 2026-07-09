@@ -13,6 +13,8 @@ app.use("/api/auth", require("./modules/auth/auth.routes"));
 
 app.use('/api/products', require('./modules/products/products.routes'));
 
+app.use('/api/categories', require('./modules/categories/categories.routes'));
+
 // Endpoint simple para comprobar que el servicio está vivo.
 app.get("/health", (req, res) => {
   res.json({ status: "ok" });
