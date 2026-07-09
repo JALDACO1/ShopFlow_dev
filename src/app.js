@@ -11,6 +11,8 @@ app.use(express.json());
 // Rutas de autenticación.
 app.use("/api/auth", require("./modules/auth/auth.routes"));
 
+app.use('/api/products', require('./modules/products/products.routes'));
+
 // Endpoint simple para comprobar que el servicio está vivo.
 app.get("/health", (req, res) => {
   res.json({ status: "ok" });
